@@ -52,6 +52,8 @@ class Dev(Configuration):
         'orders',
     ]
 
+
+
     MIDDLEWARE = [
         'django.middleware.security.SecurityMiddleware',
         'django.contrib.sessions.middleware.SessionMiddleware',
@@ -173,14 +175,8 @@ class Dev(Configuration):
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
     ADMINS = [("Abdoo", "abdoohossamm@outlook.com")]
     CORS_ALLOWED_ORIGINS = [
-        
-        
-        'http://localhost',
-        'http://103.113.12.136',
-        
-
+        'http://localhost:8080'
     ]
-    
     PAGINATION_PAGE_SIZE = 20
     REST_FRAMEWORK = {
         "DEFAULT_AUTHENTICATION_CLASSES": [
@@ -208,7 +204,7 @@ class Dev(Configuration):
     PAYPAL_MODE = os.environ.get("PAYPAL_MODE")
     PAYPAL_CLIENT_ID = os.environ.get('PAYPAL_CLIENT_ID')
     PAYPAL_CLIENT_SECRET = os.environ.get('PAYPAL_CLIENT_SECRET')
-    CORS_ALLOW_ALL_ORIGINS = True
+
 
 class Prod(Dev):
     DEBUG = int(os.environ.get('MAIN_DEBUG', 0))
@@ -227,6 +223,4 @@ class Prod(Dev):
     }
     CELERY_RESULT_BACKEND = "django-db"
     CELERY_BROKER_URL = f"redis://{os.environ.get('MAIN_REDIS_HOST')}:{os.environ.get('MAIN_REDIS_PORT')}/0"
-    # CORS_ALLOWED_ORIGINS = os.environ.get('CORS_ALLOWED_ORIGINS', '').split()
-    # CORS_ALLOW_ALL_ORIGINS = True
-
+    CORS_ALLOWED_ORIGINS = os.environ.get('CORS_ALLOWED_ORIGINS', '').split()

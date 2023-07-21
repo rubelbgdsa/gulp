@@ -10,8 +10,8 @@ if not os.environ.get('DJANGO_CONFIGURATION'):
 
 import configurations
 
-configurations.setup()
+# configurations.setup()
 
-app = Celery("src")
-app.config_from_object("django.conf:settings", namespace="CELERY")
-app.autodiscover_tasks(lambda: settings.INSTALLED_APPS)
+# app = Celery("src")
+# app.config_from_object("django.conf:settings", namespace="CELERY")
+# app.autodiscover_tasks(lambda: settings.INSTALLED_APPS)
